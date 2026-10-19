@@ -37,7 +37,12 @@ app.put('/todo/:id', (req, res) => {
   }
   res.redirect('/');
 });
-
+// 8. DELETE 라우트 (삭제 처리)
+app.delete('/todo/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  todos = todos.filter(t => t.id !== id);
+  res.redirect('/');
+});
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
 });
