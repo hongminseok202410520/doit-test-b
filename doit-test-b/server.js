@@ -27,6 +27,16 @@ app.post('/todo', (req, res) => {
   if (text) todos.push({ id: nextId++, text });
   res.redirect('/');
 });
+// 7. PUT 라우트 (수정 처리)
+app.put('/todo/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const text = (req.body.text || '').trim();
+  const todo = todos.find(t => t.id === id);
+  if (todo && text) {
+    todo.text = text;
+  }
+  res.redirect('/');
+});
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
